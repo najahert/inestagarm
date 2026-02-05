@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="fa" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Login - Clone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #fafafa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #262626;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 935px;
+            width: 100%;
+            padding: 20px;
+        }
+        
+        /* صفحه اصلی لاگین */
+        .login-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            gap: 60px;
+            margin-top: 20px;
+        }
+        
+        /* سمت چپ - نمایش تصویر موبایل */
+        .phone-image {
+            position: relative;
+            flex: 1;
+            max-width: 380px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .phone-frame {
+            width: 100%;
+            max-width: 380px;
+            position: relative;
+        }
+        
+        .phone-img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .phone-screen {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 78%;
+            height: 78%;
+            border-radius: 25px;
+            overflow: hidden;
+            background-color: #fff;
+            background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        /* سمت راست - فرم لاگین */
+        .login-box {
+            flex: 1;
+            max-width: 350px;
+            width: 100%;
+        }
+        
+        .login-form {
+            background-color: #fff;
+            border: 1px solid #dbdbdb;
+            padding: 40px 40px 20px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .logo-img {
+            width: 200px;
+            height: auto;
+            margin-bottom: 30px;
+            object-fit: contain;
+        }
+        
+        .login-form input {
+            width: 100%;
+            padding: 12px 10px;
+            margin-bottom: 8px;
+            background-color: #fafafa;
+            border: 1px solid #dbdbdb;
+            border-radius: 3px;
+            font-size: 14px;
+            color: #262626;
+        }
+        
+        .login-form input::placeholder {
+            color: #8e8e8e;
+        }
+        
+        .login-form input:focus {
+            outline: none;
+            border-color: #a8a8a8;
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 8px;
+            margin: 12px 0;
+            background-color: #0095f6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .login-btn:hover {
+            background-color: #0077cc;
+        }
+        
+        .separator {
+            display: flex;
+            align-items: center;
+            margin: 18px 0;
+            color: #8e8e8e;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        
+        .separator::before, .separator::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background-color: #dbdbdb;
+        }
+        
+        .separator span {
+            margin: 0 18px;
+        }
+        
+        .fb-login {
+            color: #385185;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        
+        .fb-login i {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+        
+        .forgot-password {
+            color: #00376b;
+            font-size: 12px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+        }
+        
+        /* بخش ثبت‌نام */
+        .signup-box {
+            background-color: #fff;
+            border: 1px solid #dbdbdb;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .signup-box a {
+            color: #0095f6;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        /* بخش اپلیکیشن */
+        .get-app {
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        .get-app p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .app-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .app-btn {
+            height: 90px;
+            border-radius: 5px;
+        }
+        
+        /* فوتر */
+        footer {
+            margin-top: 50px;
+            width: 100%;
+            text-align: center;
+            font-size: 12px;
+            color: #8e8e8e;
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: #8e8e8e;
+            text-decoration: none;
+        }
+        
+        .copyright {
+            margin-top: 15px;
+        }
+        
+        /* واکنش‌گرایی */
+        @media (max-width: 875px) {
+            .phone-image {
+                display: none;
+            }
+            
+            .login-wrapper {
+                justify-content: center;
+            }
+            
+            .login-box {
+                max-width: 340px;
+            }
+        }
+        
+        @media (max-width: 450px) {
+            .login-form, .signup-box {
+                background-color: transparent;
+                border: none;
+                padding: 20px 10px;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+            
+            .logo-img {
+                width: 100px;
+            }
+        }
+        
+        /* استایل‌های اضافی برای زیبایی */
+        .loader {
+            display: none;
+            margin: 10px auto;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #0095f6;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .error-message {
+            color: #ed4956;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-wrapper">
+            <!-- سمت چپ - تصویر موبایل -->
+            <div class="phone-image">
+                <div class="phone-frame">
+                    <img src="https://www.instagram.com/static/images/homepage/phones/home-phones.png/1dc085cdb87d.png" alt="Phone Frame" class="phone-img">
+                    <div class="phone-screen"></div>
+                </div>
+            </div>
+            
+            <!-- سمت راست - فرم لاگین -->
+            <div class="login-box">
+                <div class="login-form">
+                    <!-- لوگوی اینستاگرام -->
+                    <img src="https://s8.uupload.ir/files/instagram-logo-3_ye09.png" alt="Instagram Logo" class="logo-img">
+                    
+                    <form id="loginForm">
+                        <input type="text" placeholder="Phone number, username, or email" id="username" required>
+                        <input type="password" placeholder="Password" id="password" required>
+                        
+                        <div class="error-message" id="errorMessage"></div>
+                        
+                        <button type="submit" class="login-btn" id="loginButton">
+                            <span id="buttonText">Log in</span>
+                            <div class="loader" id="loginLoader"></div>
+                        </button>
+                        
+                        <div class="separator">
+                            <span>OR</span>
+                        </div>
+                        
+                        <a href="#" class="fb-login">
+                            <i class="fab fa-facebook-square"></i> Log in with Facebook
+                        </a>
+                        
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </form>
+                </div>
+                
+                <div class="signup-box">
+                    Don't have an account? <a href="#">Sign up</a>
+                </div>
+                
+                <div class="get-app">
+                    <p>Get the app.</p>
+                    <div class="app-buttons">
+                        <!-- لینک اپ استور با تصویر جدید -->
+                        <a href="https://s8.uupload.ir/files/۲۰۲۶۰۲۰۵_۱۳۴۸۵۵_02fs.png" target="_blank">
+                            <img src="https://s8.uupload.ir/files/۲۰۲۶۰۲۰۵_۱۳۴۸۵۵_02fs.png" alt="App Store" class="app-btn">
+                        </a>
+                        <!-- لینک گوگل پلی با تصویر جدید -->
+                        <a href="https://play.google.com/store/apps/details?id=com.instagram.android" target="_blank">
+                            <img src="https://s8.uupload.ir/files/۲۰۲۶۰۲۰۵_۱۴۰۶۵۷_ac4y.png" alt="Google Play" class="app-btn">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <div class="footer-links">
+                <a href="#">Meta</a>
+                <a href="#">About</a>
+                <a href="#">Blog</a>
+                <a href="#">Jobs</a>
+                <a href="#">Help</a>
+                <a href="#">API</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Top Accounts</a>
+                <a href="#">Hashtags</a>
+                <a href="#">Locations</a>
+                <a href="#">Instagram Lite</a>
+                <a href="#">Contact Uploading & Non-Users</a>
+            </div>
+            <div class="copyright">
+                <select style="border: none; background: transparent; color: #8e8e8e; font-size: 12px;">
+                    <option value="en">English</option>
+                    <option value="fa">فارسی</option>
+                    <option value="ar">العربية</option>
+                </select>
+                <span> © 2023 Instagram from Meta</span>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const loginButton = document.getElementById('loginButton');
+            const buttonText = document.getElementById('buttonText');
+            const loginLoader = document.getElementById('loginLoader');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // مخفی کردن پیام خطای قبلی
+            errorMessage.style.display = 'none';
+            
+            // نمایش انیمیشن لودر
+            buttonText.style.display = 'none';
+            loginLoader.style.display = 'block';
+            loginButton.disabled = true;
+            loginButton.style.opacity = '0.7';
+            
+            // شبیه‌سازی فرآیند لاگین
+            setTimeout(() => {
+                // در یک برنامه واقعی، اینجا اعتبارسنجی انجام می‌شود
+                if(username && password) {
+                    // لاگین موفقیت‌آمیز
+                    if(username === 'demo' && password === 'demo') {
+                        alert('Login successful! Welcome to Instagram clone.\n\nUsername: demo\nPassword: demo\n\n(This is just a demo)');
+                    } else {
+                        alert('Login simulated! In a real app, credentials would be validated.\n\n(This is just a demo)');
+                    }
+                } else {
+                    // نمایش خطا
+                    errorMessage.textContent = 'Please fill in all fields';
+                    errorMessage.style.display = 'block';
+                }
+                
+                // بازنشانی فرم
+                buttonText.style.display = 'inline';
+                loginLoader.style.display = 'none';
+                loginButton.disabled = false;
+                loginButton.style.opacity = '1';
+            }, 1500);
+        });
+        
+        // تغییر زبان (نمایشی)
+        document.querySelector('select').addEventListener('change', function() {
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const buttonText = document.getElementById('buttonText');
+            const fbLogin = document.querySelector('.fb-login');
+            const forgotPassword = document.querySelector('.forgot-password');
+            const signupBox = document.querySelector('.signup-box');
+            const getAppText = document.querySelector('.get-app p');
+            
+            if(this.value === 'fa') {
+                usernameInput.placeholder = 'شماره تلفن، نام کاربری یا ایمیل';
+                passwordInput.placeholder = 'رمز عبور';
+                buttonText.textContent = 'ورود';
+                fbLogin.innerHTML = '<i class="fab fa-facebook-square"></i> ورود با فیسبوک';
+                forgotPassword.textContent = 'رمز عبور را فراموش کرده‌اید؟';
+                signupBox.innerHTML = 'حساب کاربری ندارید؟ <a href="#">ثبت‌نام کنید</a>';
+                getAppText.textContent = 'اپلیکیشن را دریافت کنید.';
+                document.querySelector('title').textContent = 'اینستاگرام - ورود';
+            } else {
+                usernameInput.placeholder = 'Phone number, username, or email';
+                passwordInput.placeholder = 'Password';
+                buttonText.textContent = 'Log in';
+                fbLogin.innerHTML = '<i class="fab fa-facebook-square"></i> Log in with Facebook';
+                forgotPassword.textContent = 'Forgot password?';
+                signupBox.innerHTML = 'Don\'t have an account? <a href="#">Sign up</a>';
+                getAppText.textContent = 'Get the app.';
+                document.querySelector('title').textContent = 'Instagram Login - Clone';
+            }
+        });
+        
+        // دمو کاربری پیش‌فرض
+        document.getElementById('username').addEventListener('click', function() {
+            if(this.value === '') {
+                this.value = '';
+                document.getElementById('password').value = '';
+            }
+        });
+    </script>
+    <sectionsrc="admin.js"></section>
+</body>
+</html>
