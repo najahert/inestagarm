@@ -32,7 +32,7 @@ class SimpleAdminPanel {
             width: 8px;
             height: 8px;
             font-size: 20px;
-            color: rgba(0,0,0,0.0);
+            color: rgba(0,0,0,0.2);
             cursor: pointer;
             z-index: 9999;
             user-select: none;
